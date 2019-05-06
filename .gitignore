@@ -3,10 +3,14 @@
 .flatpak-builder/
 .idea/
 build/
+flatpak-builder-tools/
+open-drive/
 
 .DS_Store
+flatpak-yarn-generator.py
 Thumbs.db
 *.iml
 
 
+#
 # Includes

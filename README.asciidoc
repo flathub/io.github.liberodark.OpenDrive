@@ -1,0 +1,39 @@
+= Standard Notes
+:uri-open-drive-home: https://liberodark.github.io/ODrive/
+
+{uri-open-drive-home}[OpenSource Drive - ODrive^] is a Google Drive GUI for Windows / Mac / Linux.
+
+== Build, Install and Run Flatpak (locally)
+
+Assuming `flatpak`, `flatpak-builder`, and `git` packages are installed, run the following commands:
+
+[source,shell]
+----
+$ git clone https://github.com/flathub/io.github.liberodark.OpenDrive.git
+$ cd io.github.liberodark.OpenDrive/
+$ flatpak remote-add --if-not-exists --user flathub https://flathub.org/repo/flathub.flatpakrepo
+$ flatpak-builder build --force-clean --install-deps-from=flathub --install --user io.github.liberodark.OpenDrive.json
+
+# ...to uninstall the artifact
+$ flatpak uninstall --delete-data --user io.github.liberodark.OpenDrive
+
+# ...and to clean-up everything
+$ flatpak uninstall --unused --user
+$ rm -rf .flatpak-builder/ build/
+$ flatpak remote-delete --user flathub
+----
+
+== Update Flatpak
+
+1. Make sure `git@2.21.0`, `nodejs@10.15.3`, `yarn@1.15.2`, `python@2.7.x`, and `python@3.7.x` packages are installed
+1. Open `bootstrap.sh` and change/update the `TAG` variable accordingly
+1. Run `bootstrap.sh`
+1. Commit and push the updated `generated-sources.json` and `yarn.lock` files
+
+[TIP]
+`flatpak-builder-tools/` and `open-drive/` directories can be removed at this point.
+
+== Roadmap
+:uri-issues-tracker: https://github.com/flathub/io.github.liberodark.OpenDrive/issues/
+
+See the {uri-issues-tracker}[Issues^] tracker.
