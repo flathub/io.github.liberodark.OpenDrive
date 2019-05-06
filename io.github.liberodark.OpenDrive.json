@@ -62,10 +62,10 @@
           "JOBS": "max"
         },
         "arch": {
-          "x86_64": { "env": { "earch": "x64", "suffix": "" } },
-          "i386": { "env": { "earch": "ia32", "suffix": "-ia32" } },
+          "aarch64": { "env": { "earch": "arm64", "suffix": "-arm64" } },
           "arm": { "env": { "earch": "armv7l", "suffix": "-armv7l" } },
-          "aarch64": { "env": { "earch": "arm64", "suffix": "-arm64" } }
+          "i386": { "env": { "earch": "ia32", "suffix": "-ia32" } },
+          "x86_64": { "env": { "earch": "x64", "suffix": "" } }
         }
       },
       "build-commands": [
@@ -81,11 +81,9 @@
         "generated-sources.json",
         {
           "type": "shell",
+          "commands": ["for f in electron-*-linux-arm.zip; do ln -s $f ${f/arm/armv7l}; done"],
           "dest": "electron-cache",
-          "only-arches": [ "arm" ],
-          "commands": [
-            "for f in electron-*-linux-arm.zip; do  ln -s $f ${f/arm/armv7l}; done"
-          ]
+          "only-arches": ["arm"]
         },
         {
           "type": "archive",
@@ -100,8 +98,8 @@
         },
         {
           "type": "file",
-          "dest": "main",
           "dest-filename": ".yarnrc",
+          "dest": "main",
           "path": "yarnrc"
         },
         {
