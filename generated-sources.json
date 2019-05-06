@@ -1498,16 +1498,6 @@
     },
     {
         "type": "file",
-        "url": "https://github.com/electron/electron/releases/download/v4.2.0/electron-v4.2.0-linux-armv7l.zip",
-        "sha256": "81d609cfd1cfdb9645b0ee9b30d22d4dee82f7ba039b9cebee5e8777a82fdd8a",
-        "dest": "electron-cache",
-        "only-arches": [
-            "armv7l"
-        ],
-        "dest-filename": "electron-v4.2.0-linux-armv7l.zip"
-    },
-    {
-        "type": "file",
         "url": "https://github.com/electron/electron/releases/download/v4.2.0/electron-v4.2.0-linux-arm64.zip",
         "sha256": "b6567ed93f7a5321b32ceb3da3e4ed22078c52af80dd52c295cb27f8ab6eddbc",
         "dest": "electron-cache",
@@ -1518,7 +1508,17 @@
     },
     {
         "type": "file",
-        "url": "data:c36966f8499d3b6fdde628c37ebfc9cc74b7cd2099e045beef79b42e1ec14218%20%2Aelectron-v4.2.0-linux-ia32.zip%0A25a1c12eb042344de5d51b18b30a4a6484d1c2ac1f03a53a8803e493d2dab4b6%20%2Aelectron-v4.2.0-linux-x64.zip%0A81d609cfd1cfdb9645b0ee9b30d22d4dee82f7ba039b9cebee5e8777a82fdd8a%20%2Aelectron-v4.2.0-linux-armv7l.zip%0Ab6567ed93f7a5321b32ceb3da3e4ed22078c52af80dd52c295cb27f8ab6eddbc%20%2Aelectron-v4.2.0-linux-arm64.zip%0A",
+        "url": "https://github.com/electron/electron/releases/download/v4.2.0/electron-v4.2.0-linux-armv7l.zip",
+        "sha256": "81d609cfd1cfdb9645b0ee9b30d22d4dee82f7ba039b9cebee5e8777a82fdd8a",
+        "dest": "electron-cache",
+        "only-arches": [
+            "armv7l"
+        ],
+        "dest-filename": "electron-v4.2.0-linux-armv7l.zip"
+    },
+    {
+        "type": "file",
+        "url": "data:c36966f8499d3b6fdde628c37ebfc9cc74b7cd2099e045beef79b42e1ec14218%20%2Aelectron-v4.2.0-linux-ia32.zip%0A25a1c12eb042344de5d51b18b30a4a6484d1c2ac1f03a53a8803e493d2dab4b6%20%2Aelectron-v4.2.0-linux-x64.zip%0Ab6567ed93f7a5321b32ceb3da3e4ed22078c52af80dd52c295cb27f8ab6eddbc%20%2Aelectron-v4.2.0-linux-arm64.zip%0A81d609cfd1cfdb9645b0ee9b30d22d4dee82f7ba039b9cebee5e8777a82fdd8a%20%2Aelectron-v4.2.0-linux-armv7l.zip%0A",
         "dest": "electron-cache",
         "dest-filename": "SHASUMS256.txt-4.2.0"
     },

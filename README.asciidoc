@@ -1,4 +1,4 @@
-= Standard Notes
+= OpenSource Drive - ODrive
 :uri-open-drive-home: https://liberodark.github.io/ODrive/
 
 {uri-open-drive-home}[OpenSource Drive - ODrive^] is a Google Drive GUI for Windows / Mac / Linux.
