@@ -108,12 +108,6 @@
           "type": "script",
           "commands": ["exec env TMPDIR=${XDG_CACHE_HOME}/tmp/ /app/OpenDrive/odrive \"$@\""],
           "dest-filename": "odrive.sh"
-        },
-        {
-          "type": "shell",
-          "commands": ["for f in electron-*-linux-arm.zip; do  ln -s $f ${f/arm/armv7l}; done"],
-          "dest": "electron-cache",
-          "only-arches": ["arm"]
         }
       ]
     }
