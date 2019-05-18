@@ -23,12 +23,16 @@ $ rm -rf .flatpak-builder/ build/
 $ flatpak remote-delete --user flathub
 ----
 
+// git submodule foreach git pull origin master
+// git submodule update --init --recursive
+
 == Update Flatpak
 
-1. Make sure `git@2.21.0`, `nodejs@10.15.3`, `yarn@1.15.2`, `python@2.7.x`, and `python@3.7.x` packages are installed
+1. Make sure `git@2.21.0`, `nodejs@8.15.1`, `yarn@1.15.2`, and `python@3.7.x` packages are installed
 1. Open `bootstrap.sh` and change/update the `TAG` variable accordingly
 1. Run `bootstrap.sh`
 1. Commit and push the updated `generated-sources.json` and `yarn.lock` files
+1. Update manifest and AppStream metadata accordingly
 
 [TIP]
 `flatpak-builder-tools/` and `open-drive/` directories can be removed at this point.

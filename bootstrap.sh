@@ -18,7 +18,7 @@ rm -f package-lock.json   # ...because yarn complains about different packaging 
 yarn install
 yarn check --integrity
 yarn check --verify-tree
-cp yarn.lock ../
 python3 flatpak-yarn-generator.py yarn.lock -o ../generated-sources.json
+cp yarn.lock ../
 
 unset TAG

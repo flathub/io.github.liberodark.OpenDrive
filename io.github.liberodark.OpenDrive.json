@@ -16,6 +16,8 @@
     "--filesystem=xdg-run/dconf",
     "--share=ipc",
     "--share=network",
+    "--socket=fallback-x11",
+    "--socket=wayland",
     "--socket=x11",
     "--talk-name=ca.desrt.dconf",
     "--talk-name=com.canonical.AppMenu.Registrar",
@@ -23,14 +25,15 @@
     "--talk-name=org.kde.StatusNotifierWatcher"
   ],
   "modules": [
+    "shared-modules/python2.7/python-2.7.json",
     {
       "name": "nodejs",
       "cleanup": ["*"],
       "sources": [
         {
           "type": "archive",
-          "sha256": "db460a63d057ac015b75bb6a879fcbe2fefaaf22afa4b6f6445b9db61ce2270d",
-          "url": "https://nodejs.org/dist/v10.15.3/node-v10.15.3.tar.gz"
+          "sha256": "413e0086bd3abde2dfdd3a905c061a6188cc0faceb819768a53ca9c6422418b4",
+          "url": "https://nodejs.org/dist/v8.15.1/node-v8.15.1.tar.gz"
         }
       ]
     },
@@ -69,9 +72,9 @@
         }
       },
       "build-commands": [
-        "yarn --cwd /run/build/odrive/main --offline install",
-        "yarn --cwd /run/build/odrive/main --offline run release-linux --${earch} --dir",
-        "cp -r main/dist/linux${suffix}-unpacked /app/OpenDrive",
+        "yarn --cwd /run/build/odrive/main/ --offline install",
+        "yarn --cwd /run/build/odrive/main/ --offline run release-linux --${earch} --dir",
+        "cp -r main/dist/linux${suffix}-unpacked /app/OpenDrive/",
         "install -D -m0644 main/public/images/logo.svg /app/share/icons/hicolor/scalable/apps/${FLATPAK_ID}.svg",
         "install -D -m0755 odrive.sh /app/bin/odrive",
         "install -D -m0644 -t /app/share/applications/ ${FLATPAK_ID}.desktop",
@@ -87,12 +90,12 @@
         },
         {
           "type": "file",
-          "dest": "main",
+          "dest": "main/",
           "path": "yarn.lock"
         },
         {
           "type": "file",
-          "dest": "main",
+          "dest": "main/",
           "dest-filename": ".yarnrc",
           "path": "yarnrc"
         },
