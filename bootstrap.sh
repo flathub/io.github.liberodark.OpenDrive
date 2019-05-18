@@ -12,8 +12,8 @@ cd open-drive/
 git checkout "${TAG}"
 
 cp ../flatpak-builder-tools/yarn/flatpak-yarn-generator.py ./
-sed -i '/"x64": "x86_64"/a \    \"arm64": "arm64",' flatpak-yarn-generator.py
-sed -i 's/"arm": "arm"/"armv7l": "armv7l"/g' flatpak-yarn-generator.py
+sed -i '/"x64": "x86_64"/a \    \"arm64": "aarch64",' flatpak-yarn-generator.py
+sed -i 's/"arm": "arm"/"armv7l": "arm"/g' flatpak-yarn-generator.py
 rm -f package-lock.json   # ...because yarn complains about different packaging tools and what not
 yarn install
 yarn check --integrity
