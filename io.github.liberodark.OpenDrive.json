@@ -16,6 +16,8 @@
     "--filesystem=xdg-run/dconf",
     "--share=ipc",
     "--share=network",
+    "--socket=fallback-x11",
+    "--socket=wayland",
     "--socket=x11",
     "--talk-name=ca.desrt.dconf",
     "--talk-name=com.canonical.AppMenu.Registrar",
@@ -23,6 +25,7 @@
     "--talk-name=org.kde.StatusNotifierWatcher"
   ],
   "modules": [
+    "shared-modules/python2.7/python-2.7.json",
     {
       "name": "nodejs",
       "cleanup": ["*"],
@@ -57,22 +60,22 @@
       "buildsystem": "simple",
       "build-options": {
         "env": {
-          "ELECTRON_CACHE": "/run/build/odrive/electron-cache",
-          "electron_config_cache": "/run/build/odrive/electron-cache",
+          "ELECTRON_CACHE": "/run/build/odrive/electron-cache/",
+          "electron_config_cache": "/run/build/odrive/electron-cache/",
           "JOBS": "max"
         },
         "arch": {
-          "x86_64": { "env": { "earch": "x64", "suffix": "" } },
-          "i386": { "env": { "earch": "ia32", "suffix": "-ia32" } },
+          "aarch64": { "env": { "earch": "arm64", "suffix": "-arm64" } },
           "arm": { "env": { "earch": "armv7l", "suffix": "-armv7l" } },
-          "aarch64": { "env": { "earch": "arm64", "suffix": "-arm64" } }
+          "i386": { "env": { "earch": "ia32", "suffix": "-ia32" } },
+          "x86_64": { "env": { "earch": "x64", "suffix": "" } }
         }
       },
       "build-commands": [
-        "yarn --cwd /run/build/odrive/main --offline install",
-        "yarn --cwd /run/build/odrive/main --offline run release-linux --${earch} --dir",
-        "cp -r main/dist/linux${suffix}-unpacked /app/OpenDrive",
-        "for size in 32 48 64 128 256 512; do rsvg-convert -f png -h ${size} -w ${size} -o ${size}.png main/public/images/logo.svg; install -D -m644 ${size}.png /app/share/icons/hicolor/${size}x${size}/apps/${FLATPAK_ID}.png; done",
+        "yarn --cwd /run/build/odrive/main/ --offline install",
+        "yarn --cwd /run/build/odrive/main/ --offline run release-linux --${earch} --dir",
+        "cp -r main/dist/linux${suffix}-unpacked /app/OpenDrive/",
+        "install -D -m0644 main/public/images/logo.svg /app/share/icons/hicolor/scalable/apps/${FLATPAK_ID}.svg",
         "install -D -m0755 odrive.sh /app/bin/odrive",
         "install -D -m0644 -t /app/share/applications/ ${FLATPAK_ID}.desktop",
         "install -D -m0644 -t /app/share/metainfo/ ${FLATPAK_ID}.appdata.xml"
@@ -80,27 +83,19 @@
       "sources": [
         "generated-sources.json",
         {
-          "type": "shell",
-          "dest": "electron-cache",
-          "only-arches": [ "arm" ],
-          "commands": [
-            "for f in electron-*-linux-arm.zip; do  ln -s $f ${f/arm/armv7l}; done"
-          ]
-        },
-        {
           "type": "archive",
           "dest": "main",
-          "sha256": "f2aa90455dc29bddbe683bef1b13e23c886a78db0b6f7d02f5bb766ac19d70a9",
-          "url": "https://github.com/liberodark/ODrive/archive/0.2.1.tar.gz"
+          "sha256": "cafe7e9bd4faa60c9172922371157335a4fba06c6c2f5f3916e7bd3f7602789f",
+          "url": "https://github.com/liberodark/ODrive/archive/0.2.2.tar.gz"
         },
         {
           "type": "file",
-          "dest": "main",
+          "dest": "main/",
           "path": "yarn.lock"
         },
         {
           "type": "file",
-          "dest": "main",
+          "dest": "main/",
           "dest-filename": ".yarnrc",
           "path": "yarnrc"
         },

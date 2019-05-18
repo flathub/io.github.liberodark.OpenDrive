@@ -3,10 +3,13 @@
 .flatpak-builder/
 .idea/
 build/
+flatpak-builder-tools/
+open-drive/
 
 .DS_Store
 Thumbs.db
 *.iml
 
 
+#
 # Includes
