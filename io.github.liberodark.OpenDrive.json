@@ -50,8 +50,8 @@
       "sources": [
         {
           "type": "archive",
-          "sha256": "8a08d62cdbd141d5edd127646ecccc6ed107f20e98ba4cb37c072aabb82f6e24",
-          "url": "https://github.com/yarnpkg/yarn/archive/v1.15.2.tar.gz"
+          "sha256": "6cfe82e530ef0837212f13e45c1565ba53f5199eec2527b85ecbcd88bf26821d",
+          "url": "https://github.com/yarnpkg/yarn/releases/download/v1.3.2/yarn-v1.3.2.tar.gz"
         }
       ]
     },
