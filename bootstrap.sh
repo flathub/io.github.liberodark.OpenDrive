@@ -1,24 +1,42 @@
 #!/usr/bin/env sh
 
+CWD=$(pwd)
 TAG=0.2.2
 
 set -xe
 
-rm -rf flatpak-builder-tools/ open-drive/
-git clone https://github.com/flatpak/flatpak-builder-tools.git ./flatpak-builder-tools/
-git clone https://github.com/liberodark/ODrive.git ./open-drive/
+#--------------------------------------------------------------------------------------------------
+#
+#--------------------------------------------------------------------------------------------------
 
-cd open-drive/
-git checkout "${TAG}"
+before_all () {
+  cd "${CWD}"/
+  rm -rf flatpak-builder-tools/ open-drive/ generated-sources.json yarn.lock
+  git clone https://github.com/flatpak/flatpak-builder-tools.git ./flatpak-builder-tools/
+  git clone https://github.com/liberodark/ODrive.git ./open-drive/
+}
 
-cp ../flatpak-builder-tools/yarn/flatpak-yarn-generator.py ./
-sed -i '/"x64": "x86_64"/a \    \"arm64": "aarch64",' flatpak-yarn-generator.py
-sed -i 's/"arm": "arm"/"armv7l": "arm"/g' flatpak-yarn-generator.py
-rm -f package-lock.json   # ...because yarn complains about different packaging tools and what not
-yarn install
-yarn check --integrity
-yarn check --verify-tree
-python3 flatpak-yarn-generator.py yarn.lock -o ../generated-sources.json
-cp yarn.lock ../
+#--------------------------------------------------------------------------------------------------
+#
+#--------------------------------------------------------------------------------------------------
 
-unset TAG
+open_drive () {
+  cd "${CWD}"/open-drive/
+  cp "${CWD}"/flatpak-builder-tools/yarn/flatpak-yarn-generator.py ./
+  git checkout "${TAG}"
+  rm -f package-lock.json # ...because Yarn complains about different packaging tools and what not
+  yarn install
+  yarn check --integrity
+  yarn check --verify-tree
+  python3 flatpak-yarn-generator.py yarn.lock -o "${CWD}"/generated-sources.json --recursive
+  cp yarn.lock "${CWD}"/
+}
+
+#--------------------------------------------------------------------------------------------------
+#
+#--------------------------------------------------------------------------------------------------
+
+before_all
+open_drive
+
+unset PWD TAG

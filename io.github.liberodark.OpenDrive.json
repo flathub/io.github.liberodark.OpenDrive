@@ -1,42 +1,27 @@
 {
   "app-id": "io.github.liberodark.OpenDrive",
-  "base": "io.atom.electron.BaseApp",
+  "base": "org.electronjs.Electron2.BaseApp",
   "base-version": "18.08",
   "command": "odrive",
   "runtime": "org.freedesktop.Platform",
   "runtime-version": "18.08",
   "sdk": "org.freedesktop.Sdk",
+  "sdk-extensions": [
+    "org.freedesktop.Sdk.Extension.node10"
+  ],
   "separate-locales": false,
   "finish-args": [
     "--device=dri",
-    "--env=DCONF_USER_CONFIG_DIR=.config/dconf",
     "--env=XDG_CURRENT_DESKTOP=Unity",
-    "--filesystem=~/.config/dconf:ro",
     "--filesystem=home",
-    "--filesystem=xdg-run/dconf",
     "--share=ipc",
     "--share=network",
-    "--socket=fallback-x11",
-    "--socket=wayland",
     "--socket=x11",
-    "--talk-name=ca.desrt.dconf",
     "--talk-name=com.canonical.AppMenu.Registrar",
     "--talk-name=org.freedesktop.Notifications",
     "--talk-name=org.kde.StatusNotifierWatcher"
   ],
   "modules": [
-    "shared-modules/python2.7/python-2.7.json",
-    {
-      "name": "nodejs",
-      "cleanup": ["*"],
-      "sources": [
-        {
-          "type": "archive",
-          "sha256": "413e0086bd3abde2dfdd3a905c061a6188cc0faceb819768a53ca9c6422418b4",
-          "url": "https://nodejs.org/dist/v8.15.1/node-v8.15.1.tar.gz"
-        }
-      ]
-    },
     {
       "name": "yarn",
       "buildsystem": "simple",
@@ -50,19 +35,20 @@
       "sources": [
         {
           "type": "archive",
-          "sha256": "6cfe82e530ef0837212f13e45c1565ba53f5199eec2527b85ecbcd88bf26821d",
-          "url": "https://github.com/yarnpkg/yarn/releases/download/v1.3.2/yarn-v1.3.2.tar.gz"
+          "sha256": "df202627d9a70cf09ef2fb11cb298cb619db1b958590959d6f6e571b50656029",
+          "url": "https://github.com/yarnpkg/yarn/releases/download/v1.16.0/yarn-v1.16.0.tar.gz"
         }
       ]
-    },
-    {
+    }, {
       "name": "odrive",
       "buildsystem": "simple",
       "build-options": {
+        "append-path": "/usr/lib/sdk/node10/bin/",
         "env": {
           "ELECTRON_CACHE": "/run/build/odrive/electron-cache/",
+          "JOBS": "max",
           "electron_config_cache": "/run/build/odrive/electron-cache/",
-          "JOBS": "max"
+          "npm_config_nodedir": "/usr/lib/sdk/node10/"
         },
         "arch": {
           "aarch64": { "env": { "earch": "arm64", "suffix": "-arm64" } },
@@ -87,27 +73,22 @@
           "dest": "main",
           "sha256": "cafe7e9bd4faa60c9172922371157335a4fba06c6c2f5f3916e7bd3f7602789f",
           "url": "https://github.com/liberodark/ODrive/archive/0.2.2.tar.gz"
-        },
-        {
+        }, {
           "type": "file",
           "dest": "main/",
           "path": "yarn.lock"
-        },
-        {
+        }, {
           "type": "file",
           "dest": "main/",
           "dest-filename": ".yarnrc",
           "path": "yarnrc"
-        },
-        {
+        }, {
           "type": "file",
           "path": "io.github.liberodark.OpenDrive.appdata.xml"
-        },
-        {
+        }, {
           "type": "file",
           "path": "io.github.liberodark.OpenDrive.desktop"
-        },
-        {
+        }, {
           "type": "script",
           "commands": ["exec env TMPDIR=${XDG_CACHE_HOME}/tmp/ /app/OpenDrive/odrive \"$@\""],
           "dest-filename": "odrive.sh"
