@@ -1,7 +1,7 @@
 = OpenSource Drive - ODrive
 :uri-open-drive-home: https://liberodark.github.io/ODrive/
 
-{uri-open-drive-home}[OpenSource Drive - ODrive^] is a Google Drive GUI for Windows / Mac / Linux.
+{uri-open-drive-home}[OpenSource Drive - ODrive^] is a Google Drive GUI for Linux, macOS, and Windows.
 
 == Build, Install and Run Flatpak (locally)
 
@@ -23,19 +23,14 @@ $ rm -rf .flatpak-builder/ build/
 $ flatpak remote-delete --user flathub
 ----
 
-// git submodule foreach git pull origin master
-// git submodule update --init --recursive
-
 == Update Flatpak
 
-1. Make sure `git@2.21.0`, `yarn@1.16.0`, and `python@3.7.x` packages are installed
-1. Open `bootstrap.sh` and change/update the `TAG` variable accordingly
-1. Run `bootstrap.sh`
-1. Commit and push the updated `generated-sources.json` and `yarn.lock` files
-1. Update manifest and AppStream metadata accordingly
+Make sure `git-2.21.x`, `yarn-1.16.x`, and `python-3.7.x` packages are installed, then follow the next steps:
 
-[TIP]
-`flatpak-builder-tools/` and `open-drive/` directories can be removed at this point.
+- Edit `bootstrap.sh` and change/update the `TAG` variable accordingly
+- Run `bootstrap.sh`
+- Commit and push the generated/updated files
+- Update manifest and AppStream metadata accordingly
 
 == Roadmap
 :uri-issues-tracker: https://github.com/flathub/io.github.liberodark.OpenDrive/issues/

@@ -1,3 +1,2 @@
-nodedir /app
 yarn-offline-mirror "/run/build/odrive/yarn-mirror"
 yarn-offline-mirror-pruning true
