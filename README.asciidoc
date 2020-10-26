@@ -12,14 +12,14 @@ Assuming `flatpak`, `flatpak-builder`, and `git` packages are installed, run the
 $ git clone https://github.com/flathub/io.github.liberodark.OpenDrive.git
 $ cd io.github.liberodark.OpenDrive/
 $ flatpak remote-add --if-not-exists --user flathub https://flathub.org/repo/flathub.flatpakrepo
-$ flatpak-builder build --force-clean --install-deps-from=flathub --install --user io.github.liberodark.OpenDrive.json
+$ flatpak-builder build --force-clean --install-deps-from=flathub --install --user io.github.liberodark.OpenDrive.yml
 
 # ...to uninstall the artifact
 $ flatpak uninstall --delete-data --user io.github.liberodark.OpenDrive
 
 # ...and to clean-up everything
 $ flatpak uninstall --unused --user
-$ rm -rf .flatpak-builder/ build/
+$ rm --force --recursive .flatpak-builder/ build/
 $ flatpak remote-delete --user flathub
 ----
 
@@ -31,8 +31,3 @@ Make sure `git-2.21.x`, `yarn-1.16.x`, and `python-3.7.x` packages are installed
 - Run `bootstrap.sh`
 - Commit and push the generated/updated files
 - Update manifest and AppStream metadata accordingly
-
-== Roadmap
-:uri-issues-tracker: https://github.com/flathub/io.github.liberodark.OpenDrive/issues/
-
-See the {uri-issues-tracker}[Issues^] tracker.
